@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        @{
+            string sourcetext = Request["SourceText"];
+            string targetlanguage = Request["languages"];
+            //string targetlanguage2 = Request["languages2"];
+            if (IsPost)
+
+
+            {
+                string lang = new Translator.Controllers.HomeController().DetectLanguage(sourcetext);
+                string translatedtext = new Translator.Controllers.HomeController().Translate(sourcetext, lang, targetlanguage);
+                
+
+                <form method="post" action="">
+                    <br />
+                    Source Text: <input type="text" name="SourceText" style="width:250px" value="@sourcetext" /><br /><br />
+                    Select target language:
+                    @Html.DropDownList("languages", new SelectList(
+                                   new Dictionary<string, string>
+                                       { { "it", "Italian" }, { "fr", "French" }},
+                                       "Key", "Value", targetlanguage))
+                    <input type="submit" value="translate" class="submit" /><br /><br />
+
+                    Translated Text: <input type="text" name="TargetText" style="width:250px" value="@translatedtext" /><br />
+                  
+                </form>
+            }
+            else
+            {
+                <form method="post" action="">
+                    <br />                
+                    Source Text: <input type="text" name="SourceText" style="width:250px" value="@sourcetext" /><br /><br />
+                    Select target language:
+                    @Html.DropDownList("languages", new SelectList(
+                           new Dictionary<string, string>
+                               { { "it", "Italian" }, { "fr", "French" }},
+                               "Key", "Value"))
+
+
+                    <input type="submit" value="translate" class="submit" /><br /><br />
+                </form>
+            }
+        }
+    </div>
+
+</div>
