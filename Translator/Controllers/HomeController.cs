@@ -43,7 +43,7 @@ namespace Translator.Controllers
         public string getAuthToken()
         {
             //Create a cognitive service in Azure of type "Translator Text" and put it's key below
-            string key = "721adaabbbf942db831747e0c5668967";
+            string key = "<place Translator Text API Key";
             
             var authTokenSource = new AzureAuthToken(key.Trim());
             string authToken;
